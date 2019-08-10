@@ -101,7 +101,7 @@
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">구매</a>
+                  <button onclick="addName()">Save</button>
                 </h4>
                 <h5>$24.99</h5>
                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
@@ -117,7 +117,7 @@
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">구매</a>
+                  <button onclick="addName()">Save</button>
                 </h4>
                 <h5>$24.99</h5>
                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
@@ -133,7 +133,7 @@
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">구매</a>
+                  <button onclick="addName()">Save</button>
                 </h4>
                 <h5>$24.99</h5>
                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
@@ -213,6 +213,54 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
+  <script>
+    // add name to contract data
+    function addName() {
+        var yourname = document.getElementById("yourname").value;
+        var nameLen = yourname.length;
+        console.log(yourname);
+        console.log(nameLen);
+
+        var yourquote = document.getElementById("yourquote").value;
+        var ageLen = yourquote.length;
+        console.log(yourquote);
+        console.log(nameLen, yourname, ageLen, yourquote);
+        console.log(convertToHex(nameLen, yourname, ageLen, yourquote));
+
+        waykiBridge.walletPlugin(
+            "walletPluginContractInvoke",
+
+            {
+                regId: "1022278-1",
+                contractField: convertToHex(nameLen, yourname, ageLen, yourquote),
+                inputAmount: "",
+                remark: ""
+
+            },
+            function (res) {
+                function timer() {
+                    document.getElementById('txid').innerHTML = `<p>Saved Successfully</p>`
+
+                }
+                if (res.result.txid){
+
+                    document.getElementById('txid').innerHTML = `<p>Saving your name...</p>`
+                    setTimeout(timer, 1000);
+
+                    // document.getElementById('txid').innerHTML = `<p>${res.result.txid}</p>`
+                }else{
+                    document.getElementById('txid').innerHTML = `<p>Saved failed... Do you have the wallet installed?</p>`
+                }
+
+                console.log(res)
+                console.log(res.result.txid)
+
+            },
+            function (err) {
+                console.log(err)
+            }
+        );
+    }
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
