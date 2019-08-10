@@ -221,6 +221,29 @@
             }
         );
     }
+    
+        //convert name and age and lengths into hex
+    function convertToHex(num1, str1, num2, str2) {
+        var hex1 = '';
+        var hex2 = '';
+        var hex3 = '';
+        var hex4 = '';
+
+        // for number or decemals
+        hex1 = (num1 + 0x10000).toString(16).substr(-2).toLowerCase() + "000000";
+
+        for (var i = 0; i < str1.length; i++) {
+            hex2 += '' + str1.charCodeAt(i).toString(16);
+        }
+        hex3 = (num2 + 0x10000).toString(16).substr(-2).toLowerCase() + "000000";
+
+        for (var i = 0; i < str2.length; i++) {
+            hex4 += '' + str2.charCodeAt(i).toString(16);
+        }
+        return hex1 + hex2 + hex3 + hex4;
+    }
+    
+    </script>
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
