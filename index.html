@@ -103,10 +103,9 @@
               <a href="#"><img class="card-img-top" mg src="https://raw.githubusercontent.com/robertchoi/aram/master/img/1.jpg" width="700" height="400" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <button onclick="addBuy()">구매</button>
+                  <button onclick="addBuy1()">구매</button>
                 </h4>
                 <h5>$15.99</h5>
-
                 <p class="card-text">큰별이미지를 팝니다. 시원하고 강력한</p>
               </div>
               <div class="card-footer">
@@ -120,10 +119,9 @@
               <a href="#"><img class="card-img-top" img src="https://raw.githubusercontent.com/robertchoi/aram/master/img/2.jpg" width="700" height="400" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <button onclick="addBuy()">구매</button>
+                  <button onclick="addBuy2()">구매</button>
                 </h4>
                 <h5>$29.99</h5>
-
                 <p class="card-text">성운이미지를 팝니다. </p>
               </div>
               <div class="card-footer">
@@ -137,10 +135,9 @@
               <a href="#"><img class="card-img-top" img src="https://raw.githubusercontent.com/robertchoi/aram/master/img/3.jpg" width="700" height="400" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <button onclick="addBuy()">구매</button>
+                  <button onclick="addBuy3()">구매</button>
                 </h4>
                 <h5>$34.99</h5>
-
                 <p class="card-text">별의 탄생을 보여드립니다</p>
               </div>
               <div class="card-footer">
@@ -178,12 +175,14 @@
   <!-- Bootstrap core JavaScript -->
   <script>
     // add name to contract data
-    function addBuy() {
+    function addBuy1() {
         var yourname = '1';
         //var yourname = document.getElementById( 'itemName' ).innerHTML;
         var nameLen = yourname.length;
         console.log(yourname);
         console.log(nameLen);
+
+        console.log(document.getElementById( 'custId' ).value);
 
         var yourquote = '1c';
         var ageLen = yourquote.length;
@@ -193,14 +192,105 @@
 
         waykiBridge.walletPlugin(
             "walletPluginContractInvoke",
-
             {
-                regId: "1111117-1",
-                contractField: convertToHex(nameLen, yourname, ageLen, yourquote),
-                inputAmount: "100000000",
-                //inputAmount: 0.1,
-                remark: ""
+                  regId: "1111117-1",
+                  contractField: convertToHex(nameLen, yourname, ageLen, yourquote),
+                  inputAmount: "100000000",
+                  remark: ""
+            },
+            function (res) {
+                function timer() {
+                    document.getElementById('txid').innerHTML = `<p>Saved Successfully</p>`
 
+                }
+                if (res.result.txid){
+
+                    document.getElementById('txid').innerHTML = `<p>Saving your name...</p>`
+                    setTimeout(timer, 1000);
+
+                    // document.getElementById('txid').innerHTML = `<p>${res.result.txid}</p>`
+                }else{
+                    document.getElementById('txid').innerHTML = `<p>Saved failed... Do you have the wallet installed?</p>`
+                }
+
+                console.log(res)
+                console.log(res.result.txid)
+
+            },
+            function (err) {
+                console.log(err)
+            }
+        );
+    }
+    function addBuy2() {
+        var yourname = '1';
+        //var yourname = document.getElementById( 'itemName' ).innerHTML;
+        var nameLen = yourname.length;
+        console.log(yourname);
+        console.log(nameLen);
+
+        console.log(document.getElementById( 'custId' ).value);
+
+        var yourquote = '1c';
+        var ageLen = yourquote.length;
+        console.log(yourquote);
+        console.log(nameLen, yourname, ageLen, yourquote);
+        console.log(convertToHex(nameLen, yourname, ageLen, yourquote));
+
+        waykiBridge.walletPlugin(
+            "walletPluginContractInvoke",
+            {
+                  regId: "1111117-1",
+                  contractField: convertToHex(nameLen, yourname, ageLen, yourquote),
+                  inputAmount: "100000000",
+                  remark: ""
+            },
+            function (res) {
+                function timer() {
+                    document.getElementById('txid').innerHTML = `<p>Saved Successfully</p>`
+
+                }
+                if (res.result.txid){
+
+                    document.getElementById('txid').innerHTML = `<p>Saving your name...</p>`
+                    setTimeout(timer, 1000);
+
+                    // document.getElementById('txid').innerHTML = `<p>${res.result.txid}</p>`
+                }else{
+                    document.getElementById('txid').innerHTML = `<p>Saved failed... Do you have the wallet installed?</p>`
+                }
+
+                console.log(res)
+                console.log(res.result.txid)
+
+            },
+            function (err) {
+                console.log(err)
+            }
+        );
+    }
+    function addBuy3() {
+        var yourname = '1';
+        //var yourname = document.getElementById( 'itemName' ).innerHTML;
+        var nameLen = yourname.length;
+        console.log(yourname);
+        console.log(nameLen);
+
+        console.log(document.getElementById( 'custId' ).value);
+
+        var yourquote = '1c';
+        var ageLen = yourquote.length;
+        console.log(yourquote);
+        console.log(nameLen, yourname, ageLen, yourquote);
+        console.log(convertToHex(nameLen, yourname, ageLen, yourquote));
+
+        waykiBridge.walletPlugin(
+            "walletPluginContractInvoke",
+            {
+                  regId: "1111117-1",
+                  contractField: convertToHex(nameLen, yourname, ageLen, yourquote),
+                  inputAmount: "100000000",
+                  remark: ""
             },
             function (res) {
                 function timer() {
